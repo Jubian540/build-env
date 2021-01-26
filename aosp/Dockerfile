@@ -28,6 +28,9 @@ RUN rm -rf /var/lib/apt/lists/*
 # Set environment variables.
 ENV HOME /root
 ENV USER root
+ENV JAVA HOME /usr/lib/jvm/java-8-openjdk-amd64
+ENV PATH $JAVA_HOME/bin:$PATH
+ENV CLASSPATH .:$JAVA_HOME/lib:$JAVA_HOME/lib/tools.jar
 
 # Define working directory.
 WORKDIR /root
