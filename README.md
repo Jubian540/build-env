@@ -16,3 +16,14 @@ $ sudo docker build --tag rk3399-build:18.04 .
 $ sudo docker run -itd --name rk3399-build -v /path-to-rk3399SDK/:/root/ rk3399-build:18.04
 $ sudo docker exec -it rk3399-build bash
 ```
+
+### openwrt
+
+```shell
+$ cd openwrt
+$ sudo docker build --tag openwrt-build:18.04 .
+$ sudo docker run -itd --name openwrt-build -v /path-to-openwrt_source_path/:/root/ openwrt-build:18.04
+$ sudo docker exec -it openwrt-build bash
+```
+
+If you want to build lean's lede project you just run `sudo openwrt/lean.sh <target path>`, it will auto clone source code and build image and container, you just run `sudo docker exec -it openwrt-build bash` to use it.
