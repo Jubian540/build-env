@@ -18,6 +18,7 @@ RUN \
 
 # Set environment variables.
 ENV HOME /root
+ENV FORCE_UNSAFE_CONFIGURE 1
 
 # Define working directory.
 WORKDIR /root
