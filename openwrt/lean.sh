@@ -15,4 +15,4 @@ docker build --tag openwrt-build:18.04 --network host .
 cd $TAG_PATH
 git clone https://github.com/coolsnowwolf/lede
 
-docker run -itd --name openwrt-build -v `pwd`/lede:/root openwrt-build:18.04
+docker run -itd --name openwrt-build --net host -v `pwd`/lede:/root openwrt-build:18.04
