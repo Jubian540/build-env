@@ -5,6 +5,7 @@
 # Pull base image.
 FROM ubuntu:18.04
 
+# Set timezone.
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN echo 'Asia/Shanghai' >/etc/timezone
 
@@ -22,6 +23,15 @@ ENV FORCE_UNSAFE_CONFIGURE 1
 
 # Define working directory.
 WORKDIR /root
+
+# Get linaro toolchain.
+ADD https://releases.linaro.org/components/toolchain/binaries/latest-7/aarch64-linux-gnu/gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu.tar.xz /root
+ENV CROSSCOMPILE /root/gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu/bin/aarch64-linux-gnu-
+ENV ARCH arm64
+
+# Get mainline kernel and uboot
+RUN git clone https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git /root/kernel
+RUN git clone https://github.com/u-boot/u-boot.git /root/u-boot
 
 # Define default command.
 CMD ["bash"]
