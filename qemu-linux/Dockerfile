@@ -26,7 +26,7 @@ WORKDIR /root
 
 # Get linaro toolchain.
 ADD https://releases.linaro.org/components/toolchain/binaries/latest-7/aarch64-linux-gnu/gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu.tar.xz /root
-RUN tar xvf *.tar.gz && rm *.tar.gz
+RUN tar xvf *.tar.xz && rm *.tar.xz
 ENV CROSS_COMPILE /root/gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu/bin/aarch64-linux-gnu-
 ENV ARCH arm64
 
