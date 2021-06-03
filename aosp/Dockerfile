@@ -12,7 +12,9 @@ RUN \
   apt-get install -y software-properties-common && \
   apt-get -y upgrade && \
   add-apt-repository ppa:openjdk-r/ppa && \
+  add-apt-repository ppa:fkrull/deadsnakes && \
   apt-get update && \
+  apt-get install -y python3.6 && \
   apt-get install -y openjdk-8-jdk && \
   apt-get install -y git-core gnupg flex bison gperf libsdl1.2-dev bc &&\
   apt-get install -y libesd0-dev libwxgtk2.8-dev squashfs-tools build-essential zip curl &&\
@@ -25,15 +27,24 @@ RUN update-alternatives --config java
 RUN update-alternatives --config javac
 RUN rm -rf /var/lib/apt/lists/*
 
+RUN curl https://mirrors.tuna.tsinghua.edu.cn/git/git-repo > /usr/local/bin/repo && \
+    chmod +x /usr/local/bin/repo
+RUN which repo
+ENV REPO_URL='https://mirrors.tuna.tsinghua.edu.cn/git/git-repo/' USER=aosp
+ARG USER_ID=999
+ARG GROUP_ID=999
+RUN groupadd -g ${GROUP_ID} jenkins-docker && useradd -m -g jenkins-docker -u ${USER_ID} aosp
+USER aosp
+
 # Set environment variables.
-ENV HOME /root
-ENV USER root
+ENV HOME /home/aosp
+ENV USER aosp
 ENV JAVA HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV PATH $JAVA_HOME/bin:$PATH
 ENV CLASSPATH .:$JAVA_HOME/lib:$JAVA_HOME/lib/tools.jar
 
 # Define working directory.
-WORKDIR /root
+WORKDIR /home/aosp
 
 # Define default command.
 CMD ["bash"]
