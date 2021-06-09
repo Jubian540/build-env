@@ -17,7 +17,7 @@ RUN dpkg --add-architecture i386 \
 RUN locale-gen en_US.UTF-8
 RUN useradd -m -k /etc/skel -u 1000 -G sudo -d /home/sdkuser sdkuser 
 RUN echo "sdkuser ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/no_password
-
+ENV FORCE_UNSAFE_CONFIGURE=1
 
 # How to Use 
 # build a docker image by dockerfile-realtek
