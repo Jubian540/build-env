@@ -15,14 +15,14 @@ RUN \
   apt-get -y upgrade
 
 RUN apt-get install -y git gnupg flex bison gperf libsdl1.2-dev && \
-    apt-get install -y libesd-java libwxgtk3.0-dev squashfs-tools build-essential zip curl && \
+    apt-get install -y libesd-java libwxgtk3.0-dev squashfs-tools build-essential zip curl sudo && \
     apt-get install -y libncurses5-dev zlib1g-dev pngcrush schedtool libxml2 libxml2-utils && \
     apt-get install -y xsltproc lzop libc6-dev schedtool g++-multilib lib32z1-dev lib32ncurses5-dev && \
     apt-get install -y lib32readline-dev gcc-multilib libswitch-perl libssl-dev unzip zip device-tree-compiler && \
     apt-get install -y liblz4-tool python-pyelftools python3-pyelftools cpio bison rsync bc openjdk-8-jdk && \
     rm -rf /var/lib/apt/lists/*
 
-RUN adduser rk356x sudo
+RUN adduser rk356x
 RUN echo 'rk356x:1' | chpasswd
 
 RUN mkdir -p /home/rk356x && chown -R rk356x /home/rk356x && chgrp -R rk356x /home/rk356x
