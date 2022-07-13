@@ -31,7 +31,7 @@ $ sudo docker exec -it openwrt-build bash
 The password of rk356x was '1'.
 
 ```shell
-$ cd rk3568
+$ cd rk356x_android
 $ sudo docker build --tag rk356x-build:18.04 .
 $ sudo docker run -itd --name openwrt-build -v /path-to-rk356x_source_path/:/home/rk356x/sdk rk356x-build:18.04
 $ sudo docker exec -it rk356x-build bash
